@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Terms of Service - SWASTIQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .terms-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .terms-header {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            text-align: center;
+        }
+
+        .terms-header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .terms-header p {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .terms-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .terms-section {
+            margin-bottom: 2rem;
+        }
+
+        .terms-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terms-section p {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .terms-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem 0;
+        }
+
+        .terms-section li {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .terms-section li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="terms-container">
+        <div class="terms-header">
+            <h1>Terms of Service</h1>
+            <p>Please read these terms carefully before using SWASTIQ</p>
+        </div>
+
+        <div class="terms-content">
+            <div class="terms-section">
+                <h2><i class="fas fa-user-shield"></i> Acceptance of Terms</h2>
+                <p>By accessing and using SWASTIQ, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2><i class="fas fa-user-check"></i> User Account</h2>
+                <p>To access certain features of SWASTIQ, you must register for an account. You agree to:</p>
+                <ul>
+                    <li>Provide accurate and complete information</li>
+                    <li>Maintain the security of your account</li>
+                    <li>Notify us immediately of any unauthorized use</li>
+                    <li>Accept responsibility for all activities under your account</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2><i class="fas fa-heartbeat"></i> Medical Services</h2>
+                <p>SWASTIQ provides health-related information and services. However:</p>
+                <ul>
+                    <li>We are not a substitute for professional medical advice</li>
+                    <li>Always consult healthcare professionals for medical decisions</li>
+                    <li>Emergency services should be contacted for urgent situations</li>
+                    <li>We do not guarantee the accuracy of medical information</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2><i class="fas fa-lock"></i> Privacy and Data</h2>
+                <p>Your privacy is important to us. We collect and process personal data in accordance with our Privacy Policy. This includes:</p>
+                <ul>
+                    <li>Medical information you provide</li>
+                    <li>Usage data and preferences</li>
+                    <li>Communication records</li>
+                    <li>Payment information</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2><i class="fas fa-ban"></i> Prohibited Activities</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use the service for illegal purposes</li>
+                    <li>Share false or misleading information</li>
+                    <li>Attempt to access other users' accounts</li>
+                    <li>Interfere with the service's operation</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2><i class="fas fa-gavel"></i> Limitation of Liability</h2>
+                <p>SWASTIQ and its providers are not liable for:</p>
+                <ul>
+                    <li>Indirect or consequential damages</li>
+                    <li>Loss of data or business interruption</li>
+                    <li>Medical decisions made based on our information</li>
+                    <li>Service interruptions or technical issues</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2><i class="fas fa-edit"></i> Changes to Terms</h2>
+                <p>We reserve the right to modify these terms at any time. We will notify users of any material changes. Continued use of the service after changes constitutes acceptance of the new terms.</p>
+            </div>
+
+            <div class="last-updated">
+                Last updated: March 15, 2024
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+</body>
+</html> 

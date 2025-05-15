@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard - SWASTIQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .dashboard-header {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-welcome {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .user-info h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .user-info p {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .dashboard-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .appointment-list {
+            margin-top: 1rem;
+        }
+
+        .appointment-item {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .appointment-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .appointment-item p {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .appointment-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .health-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-card {
+            background: var(--background-color);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-card h4 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .metric-card .value {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .prescription-list {
+            margin-top: 1rem;
+        }
+
+        .prescription-item {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .prescription-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .prescription-item p {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .prescription-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .action-button {
+            padding: 1rem;
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .action-button i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="user-welcome">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <h2>Welcome, John Doe</h2>
+                    <p>Member since January 2024</p>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="window.location.href='myprofile.html'">
+                <i class="fas fa-user-edit"></i> Edit Profile
+            </button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3><i class="fas fa-calendar-check"></i> Upcoming Appointments</h3>
+                <div class="appointment-list">
+                    <div class="appointment-item">
+                        <h4>Dr. Sarah Sharma</h4>
+                        <p>General Physician</p>
+                        <p><i class="fas fa-clock"></i> Today, 2:00 PM</p>
+                        <p><i class="fas fa-video"></i> Video Consultation</p>
+                        <div class="appointment-actions">
+                            <button class="btn btn-primary btn-sm">Join Call</button>
+                            <button class="btn btn-secondary btn-sm">Reschedule</button>
+                        </div>
+                    </div>
+                    <div class="appointment-item">
+                        <h4>Dr. Rajesh Kumar</h4>
+                        <p>Cardiologist</p>
+                        <p><i class="fas fa-clock"></i> Tomorrow, 10:00 AM</p>
+                        <p><i class="fas fa-user-md"></i> In-Person Visit</p>
+                        <div class="appointment-actions">
+                            <button class="btn btn-primary btn-sm">View Details</button>
+                            <button class="btn btn-secondary btn-sm">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3><i class="fas fa-heartbeat"></i> Health Metrics</h3>
+                <div class="health-metrics">
+                    <div class="metric-card">
+                        <h4>Heart Rate</h4>
+                        <div class="value">72</div>
+                        <p>BPM</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Blood Pressure</h4>
+                        <div class="value">120/80</div>
+                        <p>mmHg</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Steps</h4>
+                        <div class="value">8,432</div>
+                        <p>Today</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Sleep</h4>
+                        <div class="value">7.5</div>
+                        <p>Hours</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3><i class="fas fa-prescription"></i> Recent Prescriptions</h3>
+                <div class="prescription-list">
+                    <div class="prescription-item">
+                        <h4>Dr. Sarah Sharma</h4>
+                        <p>Date: January 15, 2024</p>
+                        <p>Medications: 3</p>
+                        <div class="prescription-actions">
+                            <button class="btn btn-primary btn-sm">View Details</button>
+                            <button class="btn btn-secondary btn-sm">Download</button>
+                        </div>
+                    </div>
+                    <div class="prescription-item">
+                        <h4>Dr. Rajesh Kumar</h4>
+                        <p>Date: January 10, 2024</p>
+                        <p>Medications: 2</p>
+                        <div class="prescription-actions">
+                            <button class="btn btn-primary btn-sm">View Details</button>
+                            <button class="btn btn-secondary btn-sm">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+            <div class="quick-actions">
+                <div class="action-button" onclick="window.location.href='chat.html'">
+                    <i class="fas fa-robot"></i>
+                    <p>AI Symptom Checker</p>
+                </div>
+                <div class="action-button" onclick="window.location.href='consult.html'">
+                    <i class="fas fa-user-md"></i>
+                    <p>Book Consultation</p>
+                </div>
+                <div class="action-button" onclick="window.location.href='medicine.html'">
+                    <i class="fas fa-pills"></i>
+                    <p>Order Medicines</p>
+                </div>
+                <div class="action-button" onclick="window.location.href='emergency.html'">
+                    <i class="fas fa-ambulance"></i>
+                    <p>Emergency Services</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        // Dashboard functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in
+            if (!auth.isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load user data
+            const userData = auth.getCurrentUser();
+            if (userData) {
+                document.querySelector('.user-info h2').textContent = `Welcome, ${userData.name}`;
+            }
+
+            // Add event listeners for appointment actions
+            document.querySelectorAll('.appointment-actions button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const action = e.target.textContent.toLowerCase();
+                    const appointmentItem = e.target.closest('.appointment-item');
+                    const doctorName = appointmentItem.querySelector('h4').textContent;
+
+                    if (action === 'join call') {
+                        // Handle video call joining
+                        notifications.show('Joining video call...', 'info');
+                    } else if (action === 'reschedule') {
+                        // Handle rescheduling
+                        notifications.show('Opening reschedule form...', 'info');
+                    } else if (action === 'cancel') {
+                        // Handle cancellation
+                        if (confirm('Are you sure you want to cancel this appointment?')) {
+                            notifications.show('Appointment cancelled successfully', 'success');
+                        }
+                    }
+                });
+            });
+
+            // Add event listeners for prescription actions
+            document.querySelectorAll('.prescription-actions button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const action = e.target.textContent.toLowerCase();
+                    const prescriptionItem = e.target.closest('.prescription-item');
+                    const doctorName = prescriptionItem.querySelector('h4').textContent;
+
+                    if (action === 'view details') {
+                        // Handle viewing prescription details
+                        notifications.show('Opening prescription details...', 'info');
+                    } else if (action === 'download') {
+                        // Handle prescription download
+                        notifications.show('Downloading prescription...', 'info');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

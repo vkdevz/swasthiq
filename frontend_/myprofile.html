@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile - SWASTIQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .profile-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .profile-info h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: #666;
+            margin: 0.25rem 0;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .profile-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .vital-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .vital-item:last-child {
+            border-bottom: none;
+        }
+
+        .vital-value {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .appointment-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .appointment-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .notification-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="profile-container">
+        <section class="profile-header">
+            <img src="https://via.placeholder.com/120" alt="Profile Picture" class="profile-image">
+            <div class="profile-info">
+                <h1>BOT USER</h1>
+                <p><i class="fas fa-id-card"></i> Patient ID: #SKP123456</p>
+                <p><i class="fas fa-birthday-cake"></i> Age: 20 | Gender: Male</p>
+                <p><i class="fas fa-tint"></i> Blood Group: B+</p>
+                <p><i class="fas fa-calendar-check"></i> Last Visit: 10 May 2025</p>
+                <button class="btn btn-outline mt-2">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </button>
+            </div>
+        </section>
+
+        <div class="profile-grid">
+            <div class="profile-card">
+                <h2><i class="fas fa-heartbeat"></i> Health Information</h2>
+                <div class="vital-item">
+                    <span>Conditions</span>
+                    <span class="vital-value">Diabetes, Hypertension</span>
+                </div>
+                <div class="vital-item">
+                    <span>Allergies</span>
+                    <span class="vital-value">Penicillin</span>
+                </div>
+                <div class="vital-item">
+                    <span>Lifestyle</span>
+                    <span class="vital-value">Non-smoker, No alcohol</span>
+                </div>
+                <div class="vital-item">
+                    <span>Height</span>
+                    <span class="vital-value">172 cm</span>
+                </div>
+                <div class="vital-item">
+                    <span>Weight</span>
+                    <span class="vital-value">65 kg</span>
+                </div>
+                <div class="vital-item">
+                    <span>BMI</span>
+                    <span class="vital-value">21.9 (Normal)</span>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <h2><i class="fas fa-calendar-alt"></i> Upcoming Appointments</h2>
+                <div class="appointment-item">
+                    <p><strong>Dr. Sharma</strong></p>
+                    <p>15 May, 2025 - 10:00 AM</p>
+                    <p class="text-success">Status: Confirmed</p>
+                    <button class="btn btn-outline mt-2">Reschedule</button>
+                </div>
+                <button class="btn btn-primary mt-3">
+                    <i class="fas fa-plus"></i> Book New Appointment
+                </button>
+            </div>
+
+            <div class="profile-card">
+                <h2><i class="fas fa-bell"></i> Notifications</h2>
+                <div class="notification-item">
+                    <div>
+                        <p><i class="fas fa-pills"></i> Take Metformin at 9 PM</p>
+                        <small class="text-muted">Today</small>
+                    </div>
+                    <button class="btn btn-outline">Snooze</button>
+                </div>
+                <div class="notification-item">
+                    <div>
+                        <p><i class="fas fa-calendar"></i> Appointment with Dr. Sharma tomorrow</p>
+                        <small class="text-muted">Tomorrow</small>
+                    </div>
+                    <button class="btn btn-outline">Mark as Read</button>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <h2><i class="fas fa-phone-alt"></i> Emergency Information</h2>
+                <div class="vital-item">
+                    <span>Emergency Contact</span>
+                    <span class="vital-value">+91 9012315070</span>
+                </div>
+                <div class="vital-item">
+                    <span>Organ Donor</span>
+                    <span class="vital-value">Yes</span>
+                </div>
+                <div class="vital-item">
+                    <span>Medical ID</span>
+                    <span class="vital-value">SKP123456</span>
+                </div>
+                <button class="btn btn-outline mt-3">
+                    <i class="fas fa-qrcode"></i> Show Medical ID QR
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load components
+            loadComponent('header-placeholder', 'components/header.html');
+            loadComponent('footer-placeholder', 'components/footer.html');
+        });
+    </script>
+</body>
+</html>

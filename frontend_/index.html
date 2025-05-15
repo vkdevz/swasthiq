@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SWASTIQ - Healthcare Innovation</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="css/common.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background-color: #f2faf9;
+      scroll-behavior: smooth;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+      padding: 0 1rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .feature-card {
+      background: #e0f2f1;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      background: #b2dfdb;
+    }
+
+    .feature-card i {
+      color: #00796b;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-card h3 {
+      color: #00796b;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #004d40;
+    }
+
+    section {
+      padding: 4rem 2rem;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom, #c8ede8, #e0f2f1);
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      color: #004d40;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #004d40;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-buttons button {
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .primary-btn {
+      background-color: #00796b;
+      color: #ffffff;
+    }
+
+    .primary-btn:hover {
+      background-color: #00695c;
+    }
+
+    .secondary-btn {
+      background-color: #e0f7fa;
+      color: #00796b;
+      border: 2px solid #00796b;
+    }
+
+    .secondary-btn:hover {
+      background-color: #b2dfdb;
+    }
+
+    .hero-image {
+      margin-top: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .features {
+      background-color: #ffffff;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2rem;
+      color: #00695c;
+      margin-bottom: 2rem;
+    }
+
+    .background-shadow {
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 15rem;
+      font-weight: 800;
+      color: rgba(0, 105, 92, 0.05);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    /* Dark theme styles */
+    body.dark-theme {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    body.dark-theme .hero {
+      background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
+    }
+
+    body.dark-theme .hero h1,
+    body.dark-theme .hero p {
+      color: #ffffff;
+    }
+
+    body.dark-theme .feature-card {
+      background: #2d2d2d;
+    }
+
+    body.dark-theme .feature-card h3 {
+      color: #4db6ac;
+    }
+
+    body.dark-theme .feature-card p {
+      color: #b2dfdb;
+    }
+
+    body.dark-theme .feature-card i {
+      color: #4db6ac;
+    }
+
+    body.dark-theme .features {
+      background-color: #1a1a1a;
+    }
+
+    body.dark-theme .features h2 {
+      color: #4db6ac;
+    }
+
+    @media (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-shadow">SWASTIQ</div>
+
+  <!-- Header Container -->
+  <div id="header-placeholder"></div>
+
+  <main>
+    <section class="hero" id="top">
+      <h1>Your Health, Our Priority</h1>
+      <p>Experience healthcare reimagined with SWASTIQ. Get instant medical guidance, connect with healthcare professionals, and manage your health journey all in one place.</p>
+      <div class="cta-buttons">
+        <button class="primary-btn" onclick="window.location.href='chat.html'">
+          <i class="fas fa-comment-medical"></i> Check Symptoms
+        </button>
+        <button class="secondary-btn" onclick="window.location.href='consult.html'">
+          <i class="fas fa-user-md"></i> Consult Doctor
+        </button>
+      </div>
+      <div class="hero-image">
+        <img src="img/AI Chatbot.jpg" alt="AI-powered healthcare assistant">
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <h2 class="section-title">Why Choose SWASTIQ?</h2>
+      <div class="features-grid">
+        <a href="chat.html" class="feature-card">
+          <i class="fas fa-robot fa-3x"></i>
+          <h3>AI-Powered Diagnosis</h3>
+          <p>Get instant health insights with our advanced AI symptom checker</p>
+        </a>
+        <a href="consult.html" class="feature-card">
+          <i class="fas fa-user-md fa-3x"></i>
+          <h3>Expert Consultation</h3>
+          <p>Connect with experienced doctors for personalized medical advice</p>
+        </a>
+        <a href="medicine.html" class="feature-card">
+          <i class="fas fa-pills fa-3x"></i>
+          <h3>Medicine Delivery</h3>
+          <p>Get your prescribed medications delivered to your doorstep</p>
+        </a>
+        <a href="emergency.html" class="feature-card">
+          <i class="fas fa-ambulance fa-3x"></i>
+          <h3>Emergency Services</h3>
+          <p>Quick access to emergency medical services when you need them most</p>
+        </a>
+        <a href="community.html" class="feature-card">
+          <i class="fas fa-users fa-3x"></i>
+          <h3>Health Community</h3>
+          <p>Join our community to share experiences and get support</p>
+        </a>
+        <a href="firstaid.html" class="feature-card">
+          <i class="fas fa-first-aid fa-3x"></i>
+          <h3>First Aid Guide</h3>
+          <p>Access comprehensive first aid information and emergency guides</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Container -->
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Load components
+      loadComponent('header-placeholder', 'components/header.html');
+      loadComponent('footer-placeholder', 'components/footer.html');
+    });
+  </script>
+</body>
+</html>

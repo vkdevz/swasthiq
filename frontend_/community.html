@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Health Community - SWASTIQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .community-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .community-header {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .community-header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+        }
+
+        .community-sidebar {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            height: fit-content;
+        }
+
+        .community-main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .topic-list {
+            margin-top: 1rem;
+        }
+
+        .topic-item {
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-item:hover {
+            background: var(--background-color);
+        }
+
+        .topic-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .topic-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .post-form {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .post-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-actions-left {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-actions-left button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--background-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .post-actions-left button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .post-item {
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .post-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+        }
+
+        .post-info p {
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .post-content {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .post-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--background-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .post-action:hover {
+            color: var(--primary-color);
+        }
+
+        .post-action i {
+            font-size: 1.2rem;
+        }
+
+        .comment-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .comment-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .comment-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+
+        .comment-header h4 {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .comment-header p {
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 0.8rem;
+        }
+
+        .comment-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="community-container">
+        <div class="community-header">
+            <h1>Health Community</h1>
+            <p>Connect with others, share experiences, and learn from the community.</p>
+        </div>
+
+        <div class="community-grid">
+            <div class="community-sidebar">
+                <h3>Topics</h3>
+                <div class="topic-list">
+                    <div class="topic-item active">
+                        <i class="fas fa-fire"></i>
+                        <span>Trending</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Mental Health</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Fitness</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-apple-alt"></i>
+                        <span>Nutrition</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-bed"></i>
+                        <span>Sleep</span>
+                    </div>
+                    <div class="topic-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Wellness</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="community-main">
+                <div class="post-form">
+                    <textarea placeholder="Share your thoughts, questions, or experiences with the community..."></textarea>
+                    <div class="post-actions">
+                        <div class="post-actions-left">
+                            <button><i class="fas fa-image"></i> Add Image</button>
+                            <button><i class="fas fa-tag"></i> Add Tags</button>
+                        </div>
+                        <button class="btn btn-primary">Post</button>
+                    </div>
+                </div>
+
+                <div class="post-list">
+                    <div class="post-item">
+                        <div class="post-header">
+                            <div class="post-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="post-info">
+                                <h3>Sarah Johnson</h3>
+                                <p>2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Just completed my first 5K run! 🏃‍♀️ Feeling amazing and proud of this achievement. Any tips for recovery and maintaining this momentum?</p>
+                        </div>
+                        <div class="post-tags">
+                            <span class="post-tag">#Fitness</span>
+                            <span class="post-tag">#Running</span>
+                            <span class="post-tag">#Achievement</span>
+                        </div>
+                        <div class="post-actions">
+                            <div class="post-action">
+                                <i class="fas fa-heart"></i>
+                                <span>245</span>
+                            </div>
+                            <div class="post-action">
+                                <i class="fas fa-comment"></i>
+                                <span>32</span>
+                            </div>
+                            <div class="post-action">
+                                <i class="fas fa-share"></i>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                        <div class="comment-section">
+                            <div class="comment-form">
+                                <div class="comment-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <input type="text" placeholder="Write a comment...">
+                            </div>
+                            <div class="comment-list">
+                                <div class="comment-item">
+                                    <div class="comment-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comment-header">
+                                            <h4>Mike Thompson</h4>
+                                            <p>1 hour ago</p>
+                                        </div>
+                                        <p class="comment-text">Congratulations! 🎉 For recovery, make sure to stretch well and stay hydrated. Consider taking a rest day tomorrow.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-item">
+                        <div class="post-header">
+                            <div class="post-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="post-info">
+                                <h3>Dr. Emily Chen</h3>
+                                <p>5 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <p>Quick health tip: Did you know that staying hydrated can help prevent headaches and improve concentration? Aim for 8 glasses of water daily! 💧</p>
+                        </div>
+                        <div class="post-tags">
+                            <span class="post-tag">#HealthTips</span>
+                            <span class="post-tag">#Hydration</span>
+                            <span class="post-tag">#Wellness</span>
+                        </div>
+                        <div class="post-actions">
+                            <div class="post-action">
+                                <i class="fas fa-heart"></i>
+                                <span>189</span>
+                            </div>
+                            <div class="post-action">
+                                <i class="fas fa-comment"></i>
+                                <span>15</span>
+                            </div>
+                            <div class="post-action">
+                                <i class="fas fa-share"></i>
+                                <span>Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        // Community functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in
+            if (!auth.isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Topic selection
+            const topicItems = document.querySelectorAll('.topic-item');
+            topicItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    topicItems.forEach(t => t.classList.remove('active'));
+                    item.classList.add('active');
+                    // Here you would typically load posts for the selected topic
+                    notifications.show(`Loading posts for ${item.querySelector('span').textContent}...`, 'info');
+                });
+            });
+
+            // Post form handling
+            const postForm = document.querySelector('.post-form');
+            const postTextarea = postForm.querySelector('textarea');
+            const postButton = postForm.querySelector('.btn-primary');
+
+            postButton.addEventListener('click', () => {
+                const content = postTextarea.value.trim();
+                if (content) {
+                    // Here you would typically send the post to your backend
+                    notifications.show('Post published successfully!', 'success');
+                    postTextarea.value = '';
+                } else {
+                    notifications.show('Please write something to post', 'error');
+                }
+            });
+
+            // Post actions
+            document.querySelectorAll('.post-action').forEach(action => {
+                action.addEventListener('click', (e) => {
+                    const actionType = e.currentTarget.querySelector('i').className;
+                    const postItem = e.currentTarget.closest('.post-item');
+                    const postAuthor = postItem.querySelector('.post-info h3').textContent;
+
+                    if (actionType.includes('heart')) {
+                        // Handle like
+                        const likeCount = action.querySelector('span');
+                        likeCount.textContent = parseInt(likeCount.textContent) + 1;
+                        notifications.show('Post liked!', 'success');
+                    } else if (actionType.includes('comment')) {
+                        // Focus on comment input
+                        const commentInput = postItem.querySelector('.comment-form input');
+                        commentInput.focus();
+                    } else if (actionType.includes('share')) {
+                        // Handle share
+                        notifications.show('Sharing options will appear here', 'info');
+                    }
+                });
+            });
+
+            // Comment form handling
+            document.querySelectorAll('.comment-form input').forEach(input => {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && input.value.trim()) {
+                        // Here you would typically send the comment to your backend
+                        notifications.show('Comment added successfully!', 'success');
+                        input.value = '';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

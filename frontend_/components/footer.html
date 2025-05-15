@@ -1,0 +1,179 @@
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>SWASTIQ</h3>
+            <p>Empowering Health Through Intelligence</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="chat.html">Symptom Check</a></li>
+                <li><a href="consult.html">Consult Doctor</a></li>
+                <li><a href="emergency.html">Emergency</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul>
+                <li><a href="medicine.html">Medicine Delivery</a></li>
+                <li><a href="firstaid.html">First Aid Guide</a></li>
+                <li><a href="community.html">Health Community</a></li>
+                <li><a href="prescription.html">Prescriptions</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <ul class="contact-info">
+                <li><i class="fas fa-phone"></i> Emergency: 911</li>
+                <li><i class="fas fa-envelope"></i> support@swastiq.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 SWASTIQ. All rights reserved.</p>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        background: linear-gradient(to right, #00695c, #004d40);
+        color: #ffffff;
+        padding: 3rem 0 1rem;
+        margin-top: 4rem;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+
+    .footer-section h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+    }
+
+    .footer-section h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+    }
+
+    .footer-section p {
+        margin-bottom: 1rem;
+        color: #e0f7fa;
+    }
+
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul li a {
+        color: #e0f7fa;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+        color: #ffffff;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .social-links a {
+        color: #ffffff;
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: #b2dfdb;
+    }
+
+    .contact-info li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #e0f7fa;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 1024px) {
+        .footer-content {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-section {
+            text-align: center;
+        }
+
+        .social-links {
+            justify-content: center;
+        }
+
+        .contact-info li {
+            justify-content: center;
+        }
+    }
+
+    /* Dark theme styles */
+    body.dark-theme .site-footer {
+        background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+    }
+
+    body.dark-theme .footer-section ul li a {
+        color: #b2dfdb;
+    }
+
+    body.dark-theme .footer-section ul li a:hover {
+        color: #ffffff;
+    }
+
+    body.dark-theme .contact-info li {
+        color: #b2dfdb;
+    }
+</style>
+
+<script>
+    function handleNewsletterSubmit(event) {
+        event.preventDefault();
+        const email = event.target.querySelector('input[type="email"]').value;
+        // Here you would typically send this to your backend
+        alert('Thank you for subscribing to our newsletter!');
+        event.target.reset();
+        return false;
+    }
+</script> 

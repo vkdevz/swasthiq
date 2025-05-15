@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Emergency Services - SWASTIQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .emergency-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .emergency-header {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .emergency-header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .emergency-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .emergency-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .emergency-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .emergency-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .emergency-card p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .emergency-card .phone {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .emergency-card .btn {
+            margin-top: 1rem;
+        }
+
+        .first-aid-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            margin-bottom: 2rem;
+        }
+
+        .first-aid-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .first-aid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .first-aid-card {
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .first-aid-card:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .first-aid-card h4 {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .first-aid-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .emergency-map {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            margin-bottom: 2rem;
+        }
+
+        .emergency-map h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .map-container {
+            height: 400px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .emergency-checklist {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .emergency-checklist h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .checklist-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .checklist-item p {
+            flex: 1;
+            margin: 0;
+        }
+
+        .checklist-item .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .status.ready {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status.not-ready {
+            background: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="emergency-container">
+        <div class="emergency-header">
+            <h1>Emergency Services</h1>
+            <p>Quick access to emergency services and first aid information.</p>
+        </div>
+
+        <div class="emergency-grid">
+            <div class="emergency-card">
+                <i class="fas fa-ambulance"></i>
+                <h3>Ambulance</h3>
+                <p>24/7 Emergency Medical Services</p>
+                <div class="phone">108</div>
+                <button class="btn btn-primary" onclick="callEmergency('108')">
+                    <i class="fas fa-phone"></i> Call Now
+                </button>
+            </div>
+
+            <div class="emergency-card">
+                <i class="fas fa-hospital"></i>
+                <h3>Nearest Hospital</h3>
+                <p>Find the closest medical facility</p>
+                <div class="phone">102</div>
+                <button class="btn btn-primary" onclick="findHospital()">
+                    <i class="fas fa-location-arrow"></i> Locate
+                </button>
+            </div>
+
+            <div class="emergency-card">
+                <i class="fas fa-user-md"></i>
+                <h3>Emergency Doctor</h3>
+                <p>Connect with on-call doctors</p>
+                <div class="phone">911</div>
+                <button class="btn btn-primary" onclick="callEmergency('911')">
+                    <i class="fas fa-phone"></i> Call Now
+                </button>
+            </div>
+        </div>
+
+        <div class="first-aid-section">
+            <h2>First Aid Guide</h2>
+            <div class="first-aid-grid">
+                <div class="first-aid-card" onclick="showFirstAidGuide('cpr')">
+                    <h4><i class="fas fa-heartbeat"></i> CPR</h4>
+                    <p>Learn how to perform Cardiopulmonary Resuscitation</p>
+                </div>
+                <div class="first-aid-card" onclick="showFirstAidGuide('choking')">
+                    <h4><i class="fas fa-lungs"></i> Choking</h4>
+                    <p>Steps to help someone who is choking</p>
+                </div>
+                <div class="first-aid-card" onclick="showFirstAidGuide('burns')">
+                    <h4><i class="fas fa-fire"></i> Burns</h4>
+                    <p>How to treat different types of burns</p>
+                </div>
+                <div class="first-aid-card" onclick="showFirstAidGuide('bleeding')">
+                    <h4><i class="fas fa-tint"></i> Bleeding</h4>
+                    <p>First aid for cuts and severe bleeding</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="emergency-map">
+            <h2>Nearby Emergency Services</h2>
+            <div class="map-container">
+                <p>Loading map...</p>
+            </div>
+        </div>
+
+        <div class="emergency-checklist">
+            <h2>Emergency Preparedness Checklist</h2>
+            <div class="checklist-item">
+                <i class="fas fa-first-aid"></i>
+                <p>First Aid Kit</p>
+                <span class="status ready">Ready</span>
+            </div>
+            <div class="checklist-item">
+                <i class="fas fa-pills"></i>
+                <p>Emergency Medications</p>
+                <span class="status not-ready">Not Ready</span>
+            </div>
+            <div class="checklist-item">
+                <i class="fas fa-file-medical"></i>
+                <p>Medical Records</p>
+                <span class="status ready">Ready</span>
+            </div>
+            <div class="checklist-item">
+                <i class="fas fa-phone"></i>
+                <p>Emergency Contacts</p>
+                <span class="status ready">Ready</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        // Emergency functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize map (replace with actual map implementation)
+            initializeMap();
+
+            // Add event listeners for first aid cards
+            document.querySelectorAll('.first-aid-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const guideType = card.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    showFirstAidGuide(guideType);
+                });
+            });
+        });
+
+        // Call emergency number
+        function callEmergency(number) {
+            if (confirm(`Are you sure you want to call ${number}?`)) {
+                // Here you would typically initiate the call
+                notifications.show(`Calling ${number}...`, 'info');
+            }
+        }
+
+        // Find nearest hospital
+        function findHospital() {
+            // Here you would typically use geolocation and show nearby hospitals
+            notifications.show('Finding nearest hospitals...', 'info');
+        }
+
+        // Show first aid guide
+        function showFirstAidGuide(type) {
+            // Here you would typically show a modal with first aid instructions
+            const guides = {
+                cpr: 'CPR Steps: 1. Check responsiveness 2. Call for help 3. Begin chest compressions 4. Give rescue breaths',
+                choking: 'Choking First Aid: 1. Encourage coughing 2. Perform back blows 3. Perform abdominal thrusts',
+                burns: 'Burn Treatment: 1. Cool the burn 2. Remove jewelry 3. Cover with sterile dressing',
+                bleeding: 'Bleeding Control: 1. Apply direct pressure 2. Elevate the wound 3. Apply bandage'
+            };
+            notifications.show(guides[type], 'info');
+        }
+
+        // Initialize map
+        function initializeMap() {
+            // Here you would typically initialize a map (e.g., Google Maps)
+            const mapContainer = document.querySelector('.map-container');
+            mapContainer.innerHTML = '<p>Map integration will be implemented here</p>';
+        }
+    </script>
+</body>
+</html> 

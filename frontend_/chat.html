@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI Symptom Checker - SWASTIQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .chat-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .chat-header {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .chat-header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-header p {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: 500px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 1rem;
+            border-radius: 12px;
+            background: var(--background-color);
+        }
+
+        .message.user .message-content {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .chat-input button {
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background: var(--secondary-color);
+        }
+
+        .symptom-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .symptom-tag {
+            padding: 0.5rem 1rem;
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .symptom-tag:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .symptom-tag.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .risk-indicator.low {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .risk-indicator.medium {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .risk-indicator.high {
+            background: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="chat-container">
+        <div class="chat-header">
+            <h1>AI Symptom Checker</h1>
+            <p>Describe your symptoms and get instant guidance from our AI assistant.</p>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>Hello! I'm your AI health assistant. Please describe your symptoms, and I'll help you understand what might be wrong and what to do next.</p>
+                    <div class="symptom-tags">
+                        <span class="symptom-tag">Fever</span>
+                        <span class="symptom-tag">Headache</span>
+                        <span class="symptom-tag">Cough</span>
+                        <span class="symptom-tag">Fatigue</span>
+                        <span class="symptom-tag">Nausea</span>
+                        <span class="symptom-tag">Dizziness</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your symptoms here..." />
+            <button id="sendMessage">
+                <i class="fas fa-paper-plane"></i> Send
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        // Chat functionality
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendMessage');
+        const symptomTags = document.querySelectorAll('.symptom-tag');
+
+        // Add click event to symptom tags
+        symptomTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                tag.classList.toggle('active');
+                if (tag.classList.contains('active')) {
+                    messageInput.value += (messageInput.value ? ', ' : '') + tag.textContent;
+                } else {
+                    messageInput.value = messageInput.value.replace(tag.textContent + ', ', '').replace(', ' + tag.textContent, '').replace(tag.textContent, '');
+                }
+            });
+        });
+
+        // Send message function
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, true);
+
+            // Clear input
+            messageInput.value = '';
+
+            // Simulate AI response (replace with actual AI integration)
+            setTimeout(() => {
+                const aiResponse = generateAIResponse(message);
+                addMessage(aiResponse, false);
+            }, 1000);
+        }
+
+        // Add message to chat
+        function addMessage(text, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : ''}`;
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas ${isUser ? 'fa-user' : 'fa-robot'}"></i>
+                </div>
+                <div class="message-content">
+                    <p>${text}</p>
+                </div>
+            `;
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Simulate AI response (replace with actual AI integration)
+        function generateAIResponse(message) {
+            const responses = [
+                "Based on your symptoms, it could be a common cold. Rest and stay hydrated.",
+                "These symptoms might indicate a viral infection. Consider consulting a doctor if they persist.",
+                "Your symptoms suggest you might need medical attention. Would you like me to help you find a nearby doctor?",
+                "I recommend monitoring your symptoms and seeking medical advice if they worsen."
+            ];
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 

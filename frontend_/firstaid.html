@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>First Aid Guide - SWASTIQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .firstaid-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .firstaid-header {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .firstaid-header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-banner {
+            background: #ff4444;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .emergency-banner i {
+            font-size: 2rem;
+        }
+
+        .emergency-banner-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-banner-content p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .firstaid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .firstaid-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .firstaid-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .firstaid-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .firstaid-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .firstaid-card p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .firstaid-steps {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            margin-bottom: 2rem;
+        }
+
+        .firstaid-steps h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .step-item:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .firstaid-kit {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .firstaid-kit h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .kit-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .kit-item {
+            background: var(--background-color);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .kit-item i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .kit-item-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .kit-item-info p {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .video-section {
+            margin-top: 2rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-size: 3rem;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-info p {
+            color: var(--text-color);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="firstaid-container">
+        <div class="firstaid-header">
+            <h1>First Aid Guide</h1>
+            <p>Learn essential first aid techniques and emergency response procedures.</p>
+        </div>
+
+        <div class="emergency-banner">
+            <i class="fas fa-phone-alt"></i>
+            <div class="emergency-banner-content">
+                <h3>Emergency Services</h3>
+                <p>Call 108 for Ambulance | 102 for Hospital | 911 for Emergency Doctor</p>
+            </div>
+        </div>
+
+        <div class="firstaid-grid">
+            <div class="firstaid-card" onclick="showSteps('cpr')">
+                <i class="fas fa-heartbeat"></i>
+                <h3>CPR</h3>
+                <p>Cardiopulmonary Resuscitation for cardiac emergencies</p>
+            </div>
+            <div class="firstaid-card" onclick="showSteps('choking')">
+                <i class="fas fa-lungs"></i>
+                <h3>Choking</h3>
+                <p>Heimlich maneuver and first aid for choking victims</p>
+            </div>
+            <div class="firstaid-card" onclick="showSteps('burns')">
+                <i class="fas fa-fire"></i>
+                <h3>Burns</h3>
+                <p>First aid for different types of burns</p>
+            </div>
+            <div class="firstaid-card" onclick="showSteps('bleeding')">
+                <i class="fas fa-tint"></i>
+                <h3>Bleeding</h3>
+                <p>Control and treat different types of bleeding</p>
+            </div>
+        </div>
+
+        <div class="firstaid-steps" id="cpr-steps">
+            <h2>CPR Steps</h2>
+            <ul class="step-list">
+                <li class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Check Responsiveness</h4>
+                        <p>Tap and shout to check if the person is responsive</p>
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Call Emergency Services</h4>
+                        <p>Call 108 or ask someone to call while you begin CPR</p>
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Begin Chest Compressions</h4>
+                        <p>Place hands on center of chest, push hard and fast at 100-120 compressions per minute</p>
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Give Rescue Breaths</h4>
+                        <p>After 30 compressions, give 2 rescue breaths</p>
+                    </div>
+                </li>
+                <li class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Continue Until Help Arrives</h4>
+                        <p>Repeat cycles of 30 compressions and 2 breaths until emergency services arrive</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="firstaid-kit">
+            <h2>Essential First Aid Kit Items</h2>
+            <div class="kit-items">
+                <div class="kit-item">
+                    <i class="fas fa-band-aid"></i>
+                    <div class="kit-item-info">
+                        <h4>Bandages</h4>
+                        <p>Various sizes for different wounds</p>
+                    </div>
+                </div>
+                <div class="kit-item">
+                    <i class="fas fa-prescription-bottle"></i>
+                    <div class="kit-item-info">
+                        <h4>Antiseptic</h4>
+                        <p>For cleaning wounds</p>
+                    </div>
+                </div>
+                <div class="kit-item">
+                    <i class="fas fa-cut"></i>
+                    <div class="kit-item-info">
+                        <h4>Scissors</h4>
+                        <p>For cutting bandages and clothing</p>
+                    </div>
+                </div>
+                <div class="kit-item">
+                    <i class="fas fa-thermometer"></i>
+                    <div class="kit-item-info">
+                        <h4>Thermometer</h4>
+                        <p>For checking body temperature</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <h2>First Aid Video Tutorials</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>Basic First Aid</h3>
+                        <p>Learn essential first aid techniques</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>CPR Training</h3>
+                        <p>Step-by-step CPR guide</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>Emergency Response</h3>
+                        <p>How to handle emergency situations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide all step sections initially
+            document.querySelectorAll('.firstaid-steps').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show CPR steps by default
+            document.getElementById('cpr-steps').style.display = 'block';
+        });
+
+        function showSteps(type) {
+            // Hide all step sections
+            document.querySelectorAll('.firstaid-steps').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show selected section
+            const section = document.getElementById(`${type}-steps`);
+            if (section) {
+                section.style.display = 'block';
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Show notification
+            notifications.show(`Showing ${type.toUpperCase()} first aid steps`, 'info');
+        }
+
+        // Video card click handler
+        document.querySelectorAll('.video-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const videoTitle = card.querySelector('h3').textContent;
+                notifications.show(`Playing ${videoTitle} tutorial`, 'info');
+            });
+        });
+    </script>
+</body>
+</html> 

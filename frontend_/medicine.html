@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Medicine Order - SWASTIQ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        .medicine-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .medicine-header {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .medicine-header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .medicine-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+        }
+
+        .medicine-sidebar {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+            height: fit-content;
+        }
+
+        .medicine-main {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .search-bar {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem;
+            padding-left: 3rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+
+        .category-list {
+            margin-top: 1rem;
+        }
+
+        .category-item {
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-item:hover {
+            background: var(--background-color);
+        }
+
+        .category-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .category-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .medicine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .medicine-card {
+            background: var(--background-color);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .medicine-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .medicine-image {
+            width: 100%;
+            height: 150px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .medicine-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .medicine-info p {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .medicine-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .medicine-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--card-bg);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .quantity-selector button {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .quantity-selector span {
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-info p {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .cart-item-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .cart-summary {
+            background: var(--background-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .cart-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-summary-total {
+            font-weight: 600;
+            color: var(--primary-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .prescription-upload {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .prescription-upload i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .prescription-upload p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="medicine-container">
+        <div class="medicine-header">
+            <h1>Order Medicines</h1>
+            <p>Search and order medicines from our trusted pharmacy partners.</p>
+        </div>
+
+        <div class="medicine-grid">
+            <div class="medicine-sidebar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search medicines...">
+                </div>
+
+                <h3>Categories</h3>
+                <div class="category-list">
+                    <div class="category-item active">
+                        <i class="fas fa-pills"></i>
+                        <span>All Medicines</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>Cardiac</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Neurology</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-lungs"></i>
+                        <span>Respiratory</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-bone"></i>
+                        <span>Orthopedic</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-eye"></i>
+                        <span>Ophthalmology</span>
+                    </div>
+                </div>
+
+                <div class="prescription-upload">
+                    <i class="fas fa-file-medical"></i>
+                    <h3>Upload Prescription</h3>
+                    <p>Upload your prescription to order medicines</p>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Upload
+                    </button>
+                </div>
+            </div>
+
+            <div class="medicine-main">
+                <div class="medicine-grid">
+                    <div class="medicine-card">
+                        <div class="medicine-image">
+                            <i class="fas fa-pills fa-3x"></i>
+                        </div>
+                        <div class="medicine-info">
+                            <h3>Paracetamol 500mg</h3>
+                            <p>Tablets, 10 strips</p>
+                            <p>Manufacturer: ABC Pharma</p>
+                            <div class="medicine-price">₹99.00</div>
+                            <div class="medicine-actions">
+                                <div class="quantity-selector">
+                                    <button onclick="updateQuantity(this, -1)">-</button>
+                                    <span>1</span>
+                                    <button onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="medicine-card">
+                        <div class="medicine-image">
+                            <i class="fas fa-pills fa-3x"></i>
+                        </div>
+                        <div class="medicine-info">
+                            <h3>Amoxicillin 250mg</h3>
+                            <p>Capsules, 15 capsules</p>
+                            <p>Manufacturer: XYZ Pharma</p>
+                            <div class="medicine-price">₹149.00</div>
+                            <div class="medicine-actions">
+                                <div class="quantity-selector">
+                                    <button onclick="updateQuantity(this, -1)">-</button>
+                                    <span>1</span>
+                                    <button onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="medicine-card">
+                        <div class="medicine-image">
+                            <i class="fas fa-pills fa-3x"></i>
+                        </div>
+                        <div class="medicine-info">
+                            <h3>Omeprazole 20mg</h3>
+                            <p>Capsules, 10 capsules</p>
+                            <p>Manufacturer: PQR Pharma</p>
+                            <div class="medicine-price">₹199.00</div>
+                            <div class="medicine-actions">
+                                <div class="quantity-selector">
+                                    <button onclick="updateQuantity(this, -1)">-</button>
+                                    <span>1</span>
+                                    <button onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-section">
+                    <h2>Your Cart</h2>
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>Paracetamol 500mg</h4>
+                            <p>Tablets, 10 strips</p>
+                        </div>
+                        <div class="quantity-selector">
+                            <button onclick="updateCartQuantity(this, -1)">-</button>
+                            <span>2</span>
+                            <button onclick="updateCartQuantity(this, 1)">+</button>
+                        </div>
+                        <div class="cart-item-price">₹198.00</div>
+                        <button class="btn btn-secondary" onclick="removeFromCart(this)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+
+                    <div class="cart-summary">
+                        <div class="cart-summary-item">
+                            <span>Subtotal</span>
+                            <span>₹198.00</span>
+                        </div>
+                        <div class="cart-summary-item">
+                            <span>Shipping</span>
+                            <span>₹40.00</span>
+                        </div>
+                        <div class="cart-summary-item cart-summary-total">
+                            <span>Total</span>
+                            <span>₹238.00</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        // Medicine functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in
+            if (!auth.isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Category selection
+            const categoryItems = document.querySelectorAll('.category-item');
+            categoryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    categoryItems.forEach(c => c.classList.remove('active'));
+                    item.classList.add('active');
+                    // Here you would typically filter medicines by category
+                    notifications.show(`Loading ${item.querySelector('span').textContent} medicines...`, 'info');
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-bar input');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.trim();
+                if (query.length >= 3) {
+                    // Here you would typically search medicines
+                    notifications.show(`Searching for "${query}"...`, 'info');
+                }
+            });
+
+            // Add to cart functionality
+            document.querySelectorAll('.medicine-actions .btn-primary').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const medicineCard = e.target.closest('.medicine-card');
+                    const medicineName = medicineCard.querySelector('h3').textContent;
+                    const quantity = medicineCard.querySelector('.quantity-selector span').textContent;
+                    notifications.show(`Added ${quantity} ${medicineName} to cart`, 'success');
+                });
+            });
+        });
+
+        // Update quantity
+        function updateQuantity(button, change) {
+            const quantitySpan = button.parentElement.querySelector('span');
+            let quantity = parseInt(quantitySpan.textContent);
+            quantity = Math.max(1, quantity + change);
+            quantitySpan.textContent = quantity;
+        }
+
+        // Update cart quantity
+        function updateCartQuantity(button, change) {
+            const quantitySpan = button.parentElement.querySelector('span');
+            let quantity = parseInt(quantitySpan.textContent);
+            quantity = Math.max(1, quantity + change);
+            quantitySpan.textContent = quantity;
+            updateCartTotal();
+        }
+
+        // Remove from cart
+        function removeFromCart(button) {
+            const cartItem = button.closest('.cart-item');
+            cartItem.remove();
+            updateCartTotal();
+            notifications.show('Item removed from cart', 'success');
+        }
+
+        // Update cart total
+        function updateCartTotal() {
+            // Here you would typically recalculate the cart total
+            notifications.show('Cart updated', 'info');
+        }
+    </script>
+</body>
+</html> 
